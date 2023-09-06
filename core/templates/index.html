@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Transição de Imagem com Zoom e Desfoque</title>
+</head>
+<body>
+    <img id="background-image" src="{% static 'img/inicialjogo.jpg' %}" alt="Imagem de Fundo">
+    
+    <div id="content">
+        <img id="central-image" src="{% static 'img/logo.png' %}">
+
+        <button class="botao">Jogar</button>
+        <a href="gerenciar" class="botao">Gerenciador de Personagens</a>
+    </div>
+</body>
+</html>

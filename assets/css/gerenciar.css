@@ -1,0 +1,110 @@
+body {
+    background-color: rgb(204, 85, 64);
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.titulo {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 24px 0;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    background-color: #343a40; /* Cor de fundo escura */
+    color: #fff; /* Cor do texto branca */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
+}
+
+.criar_personagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.criar_personagem span {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.personagens {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.personagens div {
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.personagens div:hover {
+    background-color: #5f89b4;
+    transition: 0.2s;
+}
+
+.personagem {
+    border: 1px solid black;
+    border-radius: 4px;
+    display: flex;
+    background-color: rgba(52, 58, 58, 0.5);
+    width: 370px;
+    padding: 16px;
+    margin: 16px;
+}
+
+.aparencia_personagem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}   
+
+.nome_personagem {
+    background-color: #737f8b;
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 8px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.status_personagens {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+.status {
+    color: #737f8b;
+    font-size: 24px;
+    text-shadow: -1px 1px 0 #000,
+                 1px 1px 0 #000,
+                 1px -1px 0 #000,
+                 -1px -1px 0 #000;
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+#hp_status {
+    border-bottom: 4px solid rgb(38, 255, 38);
+}
+
+#pp_status {
+    border-bottom: 4px solid rgb(51, 214, 255);
+}

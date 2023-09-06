@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/gerenciar.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        <button class="titulo">Personagens</button>
+    </div>
+
+    <div class="personagens">
+        
+        <div class="personagem">
+            <div class="criar_personagem">
+                <img src="{% static 'img/mais.png' %}" height="80px">
+                <span>Criar Personagem</span>
+            </div>
+        </div>
+
+        <div class="personagem">
+            <div class="aparencia_personagem">
+                <img src="{% static 'personagem_completo/0.png' %}" height="140px">
+                
+            </div>
+            <div class="status_personagens">
+                <span class="nome_personagem">Nome Personagem</span>
+                <div class="status" id="hp_status">
+                    <span>HP</span>
+                    <span style="margin-left: 40px;">80/80</span>
+                </div>
+                <div class="status" id="pp_status">
+                    <span>PP</span>
+                    <span style="margin-left: 40px;">20/20</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="personagem">
+            <div class="aparencia_personagem">
+                <img src="{% static 'personagem_completo/4.png' %}" height="140px">
+                
+            </div>
+            <div class="status_personagens">
+                <span class="nome_personagem">Nome Personagem</span>
+                <div class="status" id="hp_status">
+                    <span>HP</span>
+                    <span style="margin-left: 40px;">80/80</span>
+                </div>
+                <div class="status" id="pp_status">
+                    <span>PP</span>
+                    <span style="margin-left: 40px;">20/20</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="personagem">
+            <div class="aparencia_personagem">
+                <img src="{% static 'personagem_completo/14.png' %}" height="140px">
+                
+            </div>
+            <div class="status_personagens">
+                <span class="nome_personagem">Nome Personagem</span>
+                <div class="status" id="hp_status">
+                    <span>HP</span>
+                    <span style="margin-left: 40px;">80/80</span>
+                </div>
+                <div class="status" id="pp_status">
+                    <span>PP</span>
+                    <span style="margin-left: 40px;">20/20</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="personagem">
+            <div class="aparencia_personagem">
+                <img src="{% static 'personagem_completo/26.png' %}" height="140px">
+                
+            </div>
+            <div class="status_personagens">
+                <span class="nome_personagem">Nome Personagem</span>
+                <div class="status" id="hp_status">
+                    <span>HP</span>
+                    <span style="margin-left: 40px;">80/80</span>
+                </div>
+                <div class="status" id="pp_status">
+                    <span>PP</span>
+                    <span style="margin-left: 40px;">20/20</span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="{% static 'js/gerenciar.js' %}"></script>
+</body>
+</html>
