@@ -7,22 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/gerenciar.css' %}">
     <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="header">
+    <div class="header my-4">
         <button class="titulo">Personagens</button>
+        <a href="/" class="voltar_home ml-2">Voltar</a>
     </div>
 
     <div class="personagens">
         
-        <div class="personagem">
+        {{ teste }}
+
+        <div class="personagem" data-toggle="modal" data-target="#modal_criacao_personagem">
             <div class="criar_personagem">
                 <img src="{% static 'img/mais.png' %}" height="80px">
                 <span>Criar Personagem</span>
             </div>
         </div>
 
-        <div class="personagem">
+        <div class="personagem" data-toggle="modal" data-target="#modal_detalhes_personagem">
             <div class="aparencia_personagem">
                 <img src="{% static 'personagem_completo/0.png' %}" height="140px">
                 
@@ -96,6 +105,81 @@
 
 
     </div>
+
+  
+  <!-- O modal em si -->
+  <div class="modal" id="modal_criacao_personagem">
+    <div class="modal-dialog" style="min-width: 650px;">
+      <div class="modal-content">
+      
+        <!-- Cabeçalho do modal -->
+        <div class="modal-header">
+          <h4 class="modal-title">Criação de Personagem</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Corpo do modal -->
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+            </div>
+            <div class="form-group">
+                <label for="classe">Classe:</label>
+                <select class="form-control" id="classe">
+                    <option value="0">Guerreiro</option>
+                    <option value="1">Mago</option>
+                    <option value="2">Arqueiro</option>
+                </select>
+            </div>
+
+            <div class="aparencia">
+                <span>Aparência:</span>
+
+                <div class="cabeca_choice">
+                    <img src="{% static 'img/seta.png' %}" class="seta_esquerda">
+                    <img src="{% static 'partes_personagem/cabeca1.png' %}" class="cabeca">
+                    <img src="{% static 'img/seta.png' %}" class="seta_direita">
+                </div>
+            </div>
+
+            <div class="status"></div>
+        </div>
+        
+        <!-- Rodapé do modal -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <!-- O modal em si -->
+  <div class="modal" id="modal_detalhes_personagem">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Cabeçalho do modal -->
+        <div class="modal-header">
+          <h4 class="modal-title">Detalhes de: Nome</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Corpo do modal -->
+        <div class="modal-body">
+          <p>Conteúdo do seu modal vai aqui.</p>
+        </div>
+        
+        <!-- Rodapé do modal -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
     <script src="{% static 'js/gerenciar.js' %}"></script>
 </body>
