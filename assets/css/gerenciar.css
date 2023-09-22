@@ -125,11 +125,55 @@ body {
     border-bottom: 4px solid rgb(51, 214, 255);
 }
 
+.aparencia_e_status {
+    display: flex;
+}
+
 .seta_esquerda, .seta_direita {
+    cursor: pointer;
     height: 40px;
 }
 
+.cabeca_choice {
+    margin-top: 16px;
+}
+
+.corpo_choice {
+    display: flex;
+    margin-top: 8px;
+}
+
+.pernas_choice {
+    display: flex;
+    margin-top: 8px;
+}
+
 .cabeca {
-    margin-top: 32px;
-    height: 120px;
+    height: 80px;
+}
+
+.corpo {
+    flex: 1;
+}
+
+.pernas {
+    flex: 1;
+}
+
+.seta_direita {
+    transform: scaleX(-1);
+}
+
+.atribuir_status {
+    flex: 1;
+    margin-left: 32px;
+}
+
+.status_text {
+    display: flex;
+}
+
+#restantes_text {
+    margin-left: auto;
+    margin-right: 8px;
 }
