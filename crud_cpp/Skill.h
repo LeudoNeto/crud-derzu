@@ -9,14 +9,15 @@ class Skill {
     public:
         int id;
         string nome;
+        char tipo; // m para mágico/f para físico
         int custo;
         int dano_base;
         float multiplicadores_atributos[7];
     
         Skill() {}
 
-        Skill(int id, string nome, int custo, int dano_base, float multiplicadores_atributos[7])
-        : id(id), nome(nome), custo(custo), dano_base(dano_base) {
+        Skill(int id, string nome, char tipo, int custo, int dano_base, float multiplicadores_atributos[7])
+        : id(id), nome(nome), tipo(tipo), custo(custo), dano_base(dano_base) {
             for (int i = 0; i < 7; i++) {
                 this->multiplicadores_atributos[i] = multiplicadores_atributos[i];
             }
@@ -39,6 +40,7 @@ class Skill {
             char separator;
             file >> id >> separator;
             std::getline(file, nome, ';');
+            file >> tipo >> separator;
             file >> custo >> separator;
             file >> dano_base >> separator;
             for (int i = 0; i < 7; i++) {
@@ -50,9 +52,10 @@ class Skill {
         }
 
 
-        void printInfo() {
+        void printInfo() const {
             cout << "ID: " << id << endl;
             cout << "Nome: " << nome << endl;
+            cout << "Tipo: " << tipo << endl;
             cout << "Custo: " << custo << endl;
             cout << "Dano Base: " << dano_base << endl;
             cout << "Multiplicadores de Atributos: ";

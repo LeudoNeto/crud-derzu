@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Skill.h"
 #include "Personagem.h"
-#include<vector>
+#include <vector>
 
 using namespace std;
 
@@ -30,6 +30,28 @@ class Gerente {
                 return skill;
             }
 
+        vector<Personagem> readPersonagens() {
+            vector<Personagem> personagens;
+            ifstream arquivo("personagens.txt");
+            
+            if (!arquivo) {
+                cerr << "Erro ao abrir o arquivo." << endl;
+                return personagens; // Retorna um vetor vazio em caso de erro
+            }
+            
+            while (true) {
+                Personagem p;
+                if (!p.read(arquivo)) {
+                    break; // Saia do loop se a leitura falhar
+                }
+                personagens.push_back(p);
+            }
+            
+            arquivo.close();
+            
+            return personagens;
+        }
+        
 
         void create(Skill s) {
             ofstream arquivo("skills.txt", ios::binary | ios::app);
@@ -56,13 +78,19 @@ class Gerente {
     
             arquivo.close();
         
-    }
+        }
 
         int getLastPersonagemID() {
             ifstream arquivo("personagens.txt");
     
             if (!arquivo) {
                 return 0; // Se o arquivo não existe, assume-se que o último ID é 0
+            }
+
+            // Verifique se o arquivo está vazio usando peek()
+            if (arquivo.peek() == ifstream::traits_type::eof()) {
+                arquivo.close();
+                return 0; // Arquivo está vazio, retorne 0
             }
     
             Personagem p;
@@ -102,123 +130,80 @@ class Gerente {
         }
 
       Personagem getPersonagemById(int id) {
-        Personagem personagem; // Cria um objeto Personagem vazio
-        // Abre o arquivo "personagens.txt" para leitura
-        ifstream arquivo("personagens.txt");
+          vector<Personagem> personagens = readPersonagens();
+          
+          for (const Personagem& p : personagens) {
+              if (p.id == id) {
+                  return p; // Retorna o personagem com o ID correspondente
+              }
+          }
+          
+          // Caso o ID não seja encontrado, você pode retornar um objeto Personagem vazio ou lançar uma exceção, dependendo dos requisitos do seu programa.
+          cerr << "Personagem com ID " << id << " não encontrado." << endl;
+          return Personagem(); // Retorna um objeto Personagem vazio (verifique se a classe Personagem possui um construtor padrão)
+      }
 
-        // Verifica se o arquivo foi aberto com sucesso
-        if (!arquivo) {
-            cerr << "Erro ao abrir o arquivo." << endl;
-            return personagem;
-        }
-
-        Personagem p; // Cria um objeto Personagem para ler os dados do arquivo
-
-        // Inicia um loop para ler os registros do arquivo
-        while (p.read(arquivo)) {
-            // Verifica se o ID do personagem lido corresponde ao ID fornecido como argumento
-            if (p.id == id) {
-                // Fecha o arquivo após encontrar o personagem
-                arquivo.close();
-                // Retorna o personagem encontrado
-                return p;
+  bool updatePersonagem(Personagem updatedPersonagem) {
+    vector<Personagem> personagens = readPersonagens();
+    
+    for (Personagem& p : personagens) { // Use uma referência (&) aqui
+        if (p.id == updatedPersonagem.id) {
+            // Encontrou o personagem com o ID correspondente, atualize-o
+            p = updatedPersonagem;
+            
+            // Reescreva todo o arquivo com os personagens atualizados
+            ofstream arquivo("personagens.txt");
+            if (!arquivo) {
+                cerr << "Erro ao abrir o arquivo." << endl;
+                return false; // Falha ao abrir o arquivo para escrita
             }
-        }
-
-        // Fecha o arquivo após não encontrar o personagem
-        arquivo.close();
-        // Define o ID como -1 para indicar que o Personagem não foi encontrado
-        personagem.id = -1;
-        // Retorna o objeto Personagem vazio
-        return personagem;
-    }
-
-  bool updatePersonagemById(int id, Personagem newPersonagem) {
-        // Abre o arquivo "personagens.txt" para leitura
-        ifstream inFile("personagens.txt");
-        // Abre um arquivo temporário "temp.txt" para escrita
-        ofstream outFile("temp.txt");
-
-        // Verifica se os arquivos foram abertos com sucesso
-        if (!inFile || !outFile) {
-            cerr << "Erro ao abrir o arquivo." << endl;
-            return false;
-        }
-
-        Personagem p; // Cria um objeto Personagem para ler os dados do arquivo
-        bool personagemEncontrado = false; // Flag para indicar se o personagem foi encontrado
-
-        // Inicia um loop para ler os registros do arquivo
-        while (p.read(inFile)) {
-            // Verifica se o ID do personagem lido corresponde ao ID fornecido como argumento
-            if (p.id == id) {
-                // Escreve os novos dados do personagem no arquivo temporário
-                outFile << newPersonagem.serialize() << endl;
-                // Marca o personagem como encontrado
-                personagemEncontrado = true;
-            } else {
-                // Escreve o personagem original no arquivo temporário
-                outFile << p.serialize() << endl;
+            
+            for (const Personagem& personagem : personagens) {
+                personagem.write(arquivo);
             }
+            
+            arquivo.close();
+            
+            return true; // Atualização bem-sucedida
         }
-
-        // Fecha os arquivos após concluir as operações
-        inFile.close();
-        outFile.close();
-
-        // Remove o arquivo original e renomeia o arquivo temporário para "personagens.txt"
-        if (personagemEncontrado) {
-            remove("personagens.txt");
-            rename("temp.txt", "personagens.txt");
-        } else {
-            // Se o personagem não foi encontrado, apenas remova o arquivo temporário
-            remove("temp.txt");
-        }
-
-        return personagemEncontrado;
     }
+    
+    cerr << "Personagem com ID " << updatedPersonagem.id << " não encontrado." << endl;
+    return false; // Personagem com o ID especificado não encontrado
+  }
 
-  bool removePersonagemById(int id) {
-        // Abre o arquivo "personagens.txt" para leitura
-        ifstream inFile("personagens.txt");
-        // Abre um arquivo temporário "temp.txt" para escrita
-        ofstream outFile("temp.txt");
-
-        // Verifica se os arquivos foram abertos com sucesso
-        if (!inFile || !outFile) {
-            cerr << "Erro ao abrir o arquivo." << endl;
-            return false;
+  bool deletePersonagem(int id) {
+    vector<Personagem> personagens = readPersonagens();
+    bool found = false; // Variável para rastrear se o personagem foi encontrado
+    
+    for (auto it = personagens.begin(); it != personagens.end(); ++it) {
+        if (it->id == id) {
+            // Encontrou o personagem com o ID correspondente, exclua-o
+            it = personagens.erase(it);
+            found = true;
+            break; // Não é mais necessário continuar procurando
         }
-
-        Personagem p; // Cria um objeto Personagem para ler os dados do arquivo
-        bool personagemEncontrado = false; // Flag para indicar se o personagem foi encontrado
-
-        // Inicia um loop para ler os registros do arquivo
-        while (p.read(inFile)) {
-            // Verifica se o ID do personagem lido corresponde ao ID fornecido como argumento
-            if (p.id != id) {
-                // Escreve o personagem original no arquivo temporário, exceto o que deve ser removido
-                outFile << p.serialize() << endl;
-            } else {
-                // Marca o personagem como encontrado
-                personagemEncontrado = true;
-            }
-        }
-
-        // Fecha os arquivos após concluir as operações
-        inFile.close();
-        outFile.close();
-
-        // Remove o arquivo original e renomeia o arquivo temporário para "personagens.txt"
-        if (personagemEncontrado) {
-            remove("personagens.txt");
-            rename("temp.txt", "personagens.txt");
-        } else {
-            // Se o personagem não foi encontrado, apenas remova o arquivo temporário
-            remove("temp.txt");
-        }
-
-        return personagemEncontrado;
     }
+    
+    if (!found) {
+        cerr << "Personagem com ID " << id << " não encontrado." << endl;
+        return false; // Personagem com o ID especificado não encontrado
+    }
+    
+    // Reescreva todo o arquivo com os personagens restantes após a exclusão
+    ofstream arquivo("personagens.txt");
+    if (!arquivo) {
+        cerr << "Erro ao abrir o arquivo." << endl;
+        return false; // Falha ao abrir o arquivo para escrita
+    }
+    
+    for (Personagem personagem : personagens) {
+        personagem.write(arquivo);
+    }
+    
+    arquivo.close();
+    
+    return true; // Exclusão bem-sucedida
+  }
 
 };
