@@ -13,6 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static "lib\sweetalert2.all.min.js" %}"></script>
 </head>
 <body>
     <div class="header my-4">
@@ -21,86 +22,33 @@
     </div>
 
     <div class="personagens">
+    
+        <div class="criar_personagem" data-toggle="modal" data-target="#modal_criacao_personagem">
+            <img src="{% static 'img/mais.png' %}" height="80px">
+            <span>Criar Personagem</span>
+        </div>
+
+        {% for personagem in personagens %}
+            <div class="personagem" data-id="{{ personagem.id }}" data-toggle="modal" data-target="#modal_detalhes_personagem">
+                <div class="aparencia_personagem">
+                    <img src="/assets/personagem_completo/{{ personagem.aparencia }}.png" height="140px">
+                    
+                </div>
+                <div class="status_personagens">
+                    <span class="nome_personagem">{{ personagem.nome }}</span>
+                    <div class="status" id="hp_status">
+                        <span>HP</span>
+                        <span style="margin-left: 40px;">{{ personagem.hp }}/{{ personagem.hp }}</span>
+                    </div>
+                    <div class="status" id="ee_status">
+                        <span>EE</span>
+                        <span style="margin-left: 40px;">{{ personagem.ee }}/{{ personagem.ee }}</span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
         
-        <div class="personagem" data-toggle="modal" data-target="#modal_criacao_personagem">
-            <div class="criar_personagem">
-                <img src="{% static 'img/mais.png' %}" height="80px">
-                <span>Criar Personagem</span>
-            </div>
-        </div>
-
-        <div class="personagem" data-toggle="modal" data-target="#modal_detalhes_personagem">
-            <div class="aparencia_personagem">
-                <img src="{% static 'personagem_completo/0.png' %}" height="140px">
-                
-            </div>
-            <div class="status_personagens">
-                <span class="nome_personagem">Nome Personagem</span>
-                <div class="status" id="hp_status">
-                    <span>HP</span>
-                    <span style="margin-left: 40px;">80/80</span>
-                </div>
-                <div class="status" id="pp_status">
-                    <span>PP</span>
-                    <span style="margin-left: 40px;">20/20</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="personagem">
-            <div class="aparencia_personagem">
-                <img src="{% static 'personagem_completo/4.png' %}" height="140px">
-                
-            </div>
-            <div class="status_personagens">
-                <span class="nome_personagem">Nome Personagem</span>
-                <div class="status" id="hp_status">
-                    <span>HP</span>
-                    <span style="margin-left: 40px;">80/80</span>
-                </div>
-                <div class="status" id="pp_status">
-                    <span>PP</span>
-                    <span style="margin-left: 40px;">20/20</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="personagem">
-            <div class="aparencia_personagem">
-                <img src="{% static 'personagem_completo/14.png' %}" height="140px">
-                
-            </div>
-            <div class="status_personagens">
-                <span class="nome_personagem">Nome Personagem</span>
-                <div class="status" id="hp_status">
-                    <span>HP</span>
-                    <span style="margin-left: 40px;">80/80</span>
-                </div>
-                <div class="status" id="pp_status">
-                    <span>PP</span>
-                    <span style="margin-left: 40px;">20/20</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="personagem">
-            <div class="aparencia_personagem">
-                <img src="{% static 'personagem_completo/26.png' %}" height="140px">
-                
-            </div>
-            <div class="status_personagens">
-                <span class="nome_personagem">Nome Personagem</span>
-                <div class="status" id="hp_status">
-                    <span>HP</span>
-                    <span style="margin-left: 40px;">80/80</span>
-                </div>
-                <div class="status" id="pp_status">
-                    <span>PP</span>
-                    <span style="margin-left: 40px;">20/20</span>
-                </div>
-            </div>
-        </div>
-
 
     </div>
 
@@ -140,19 +88,19 @@
 
                     <div class="cabeca_choice">
                         <img src="{% static 'img/seta.png' %}" class="seta_esquerda">
-                        <img src="{% static 'partes_tratadas/cabeca1.png' %}" data-value="1" class="cabeca">
+                        <img src="{% static 'partes_tratadas/cabeca1.png' %}" data-value="1" id="cabeca" class="cabeca">
                         <img src="{% static 'img/seta.png' %}" class="seta_direita">
                     </div>
 
                     <div class="corpo_choice">
                         <img src="{% static 'img/seta.png' %}" class="seta_esquerda">
-                        <img src="{% static 'partes_tratadas/corpo1.png' %}" data-value="1" class="corpo">
+                        <img src="{% static 'partes_tratadas/corpo1.png' %}" data-value="1" id="corpo" class="corpo">
                         <img src="{% static 'img/seta.png' %}" class="seta_direita">
                     </div>
 
                     <div class="pernas_choice">
                         <img src="{% static 'img/seta.png' %}" class="seta_esquerda">
-                        <img src="{% static 'partes_tratadas/pernas1.png' %}" data-value="1" class="pernas">
+                        <img src="{% static 'partes_tratadas/pernas1.png' %}" data-value="1" id="pernas" class="pernas">
                         <img src="{% static 'img/seta.png' %}" class="seta_direita">
                     </div>
                 </div>
@@ -160,15 +108,15 @@
                 <div class="atribuir_status">
                     <div class="status_text">
                         <span>Status: (máx 100)</span>
-                        <span id="restantes_text">Restantes: </span> <span id="restantes_number">100</span>
+                        <span class="restantes_text">Restantes: </span> <span id="restantes_number">100</span>
                     </div>
                     <div class="form-group w-100">
                         <label for="nome">HP:</label>
-                        <input type="number" class="form-control" id="HP" placeholder="HP">
+                        <input type="number" class="form-control" id="hp" placeholder="HP">
                     </div>
                     <div class="form-group w-100">
                         <label for="nome">Energia Elemental:</label>
-                        <input type="number" class="form-control" id="EE" placeholder="EE">
+                        <input type="number" class="form-control" id="ee" placeholder="EE">
                     </div>
                     <div class="form-group w-100">
                         <label for="nome">Ataque:</label>
@@ -261,11 +209,11 @@
   
               <div class="form-group">
                   <label for="nome">Nome:</label>
-                  <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+                  <input type="text" class="form-control" id="nome_detalhes" placeholder="Digite seu nome">
               </div>
               <div class="form-group">
                   <label for="classe">Classe:</label>
-                  <select class="form-control" id="classe">
+                  <select class="form-control" id="classe_detalhes">
                       <option value="0">Berserker</option>
                       <option value="1">Velocista</option>
                       <option value="2">Estrategista</option>
@@ -277,24 +225,24 @@
               <div class="aparencia_e_status">
                   <div class="aparencia_detalhes">
                       <span>Aparência:</span>
-                      <img src="{% static 'personagem_completo/0.png' %}" data-cabeca="1" data-corpo="1" data-pernas="1">
+                      <img src="{% static 'personagem_completo/0.png' %}" id="aparencia_detalhes" data-cabeca="1" data-corpo="1" data-pernas="1">
                   </div>
   
                   <div class="atribuir_status_detalhes">
                       <div class="status_text">
-                          <span>Status: (máx 100)</span>
+                          <span>Status:</span>
                       </div>
                       <div class="form-group w-100">
                           <label for="nome">HP:</label>
-                          <input type="number" class="form-control" id="hp" placeholder="HP">
+                          <input type="number" class="form-control" id="hp_detalhes" placeholder="HP">
                       </div>
                       <div class="form-group w-100">
                           <label for="nome">Energia Elemental:</label>
-                          <input type="number" class="form-control" id="ee" placeholder="EE">
+                          <input type="number" class="form-control" id="ee_detalhes" placeholder="EE">
                       </div>
                       <div class="form-group w-100">
                           <label for="nome">Ataque:</label>
-                          <input type="number" class="form-control" id="ataque" placeholder="Ataque">
+                          <input type="number" class="form-control" id="ataque_detalhes" placeholder="Ataque">
                       </div>
                   </div>
               </div>
@@ -302,22 +250,22 @@
                   <div class="d-flex">
                       <div class="form-group w-50 mr-5">
                           <label for="nome">Defesa:</label>
-                          <input type="number" class="form-control" id="defesa" placeholder="Defesa">
+                          <input type="number" class="form-control" id="defesa_detalhes" placeholder="Defesa">
                       </div>
                       <div class="form-group w-50">
                           <label for="nome">Ataque Mágico:</label>
-                          <input type="number" class="form-control" id="sp_ataque" placeholder="Ataque Mágico">
+                          <input type="number" class="form-control" id="sp_ataque_detalhes" placeholder="Ataque Mágico">
                       </div>
                   </div>
   
                   <div class="d-flex">
                       <div class="form-group w-50 mr-5">
                           <label for="nome">Defesa Mágica:</label>
-                          <input type="number" class="form-control" id="sp_defesa" placeholder="Defesa Mágica">
+                          <input type="number" class="form-control" id="sp_defesa_detalhes" placeholder="Defesa Mágica">
                       </div>
                       <div class="form-group w-50">
                           <label for="nome">Velocidade</label>
-                          <input type="number" class="form-control" id="velocidade" placeholder="Velocidade">
+                          <input type="number" class="form-control" id="velocidade_detalhes" placeholder="Velocidade">
                       </div>
                   </div>
               </div>
@@ -325,33 +273,33 @@
               <div class="skills">
                   <div class="form-group">
                       <label for="skill1">Skill 1:</label>
-                      <select class="form-control" id="skill1">
-                          <option value="0">Investida</option>
-                          <option value="1">Golpe Rápido</option>
+                      <select class="form-control" id="skill1_detalhes">
+                          <option value="1">Investida</option>
+                          <option value="2">Golpe Rápido</option>
                       </select>
                   </div>
   
                   <div class="form-group">
-                      <label for="skill2">Skill 2:</label>
-                      <select class="form-control" id="skill2">
-                          <option value="0">Investida</option>
-                          <option value="1">Golpe Rápido</option>
+                      <label for="skill2_detalhes">Skill 2:</label>
+                      <select class="form-control" id="skill2_detalhes">
+                          <option value="1">Investida</option>
+                          <option value="2">Golpe Rápido</option>
                       </select>
                   </div>
   
                   <div class="form-group">
                       <label for="skill3">Skill 3:</label>
-                      <select class="form-control" id="skill3">
-                          <option value="0">Investida</option>
-                          <option value="1">Golpe Rápido</option>
+                      <select class="form-control" id="skill3_detalhes">
+                          <option value="1">Investida</option>
+                          <option value="2">Golpe Rápido</option>
                       </select>
                   </div>
   
                   <div class="form-group">
                       <label for="skill4">Skill 4:</label>
-                      <select class="form-control" id="skill4">
-                          <option value="0">Investida</option>
-                          <option value="1">Golpe Rápido</option>
+                      <select class="form-control" id="skill4_detalhes">
+                          <option value="1">Investida</option>
+                          <option value="2">Golpe Rápido</option>
                       </select>
                   </div>
               </div>
@@ -360,12 +308,153 @@
           <!-- Rodapé do modal -->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-warning" data-dismiss="modal">Editar</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Deletar</button>
+            <button type="button" class="btn btn-warning" id="editar_button" data-dismiss="modal" data-toggle="modal" data-target="#modal_editar_personagem">Editar</button>
+            <button type="button" class="btn btn-danger" id ="deletar_button">Deletar</button>
           </div>
           
         </div>
       </div>
+  </div>
+
+
+  <!-- O modal em si -->
+  <div class="modal" id="modal_editar_personagem">
+    <div class="modal-dialog" style="min-width: 650px;">
+      <div class="modal-content">
+      
+        <!-- Cabeçalho do modal -->
+        <div class="modal-header">
+          <h4 class="modal-title">Editar Personagem: </h4><h4 class="modal-title" style="margin-left: 8px;" id="nome_personagem_editar"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Corpo do modal -->
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome_editar" placeholder="Digite seu nome">
+            </div>
+            <div class="form-group">
+                <label for="classe">Classe:</label>
+                <select class="form-control" id="classe_editar">
+                    <option value="0">Berserker</option>
+                    <option value="1">Velocista</option>
+                    <option value="2">Estrategista</option>
+                    <option value="3">Mestre de defesa</option>
+                    <option value="4">Guerreiro Mágico</option>
+                </select>
+            </div>
+
+            <div class="aparencia_e_status">
+                <div class="aparencia">
+                    <span>Aparência:</span>
+
+                    <div class="cabeca_choice">
+                        <img src="{% static 'img/seta.png' %}" class="seta_esquerda">
+                        <img src="{% static 'partes_tratadas/cabeca1.png' %}" data-value="1" id="cabeca_editar" class="cabeca">
+                        <img src="{% static 'img/seta.png' %}" class="seta_direita">
+                    </div>
+
+                    <div class="corpo_choice">
+                        <img src="{% static 'img/seta.png' %}" class="seta_esquerda">
+                        <img src="{% static 'partes_tratadas/corpo1.png' %}" data-value="1" id="corpo_editar" class="corpo">
+                        <img src="{% static 'img/seta.png' %}" class="seta_direita">
+                    </div>
+
+                    <div class="pernas_choice">
+                        <img src="{% static 'img/seta.png' %}" class="seta_esquerda">
+                        <img src="{% static 'partes_tratadas/pernas1.png' %}" data-value="1" id="pernas_editar" class="pernas">
+                        <img src="{% static 'img/seta.png' %}" class="seta_direita">
+                    </div>
+                </div>
+
+                <div class="atribuir_status_editar">
+                    <div class="status_text">
+                        <span>Status: (máx 100)</span>
+                        <span class="restantes_text">Restantes: </span> <span id="restantes_number_editar">100</span>
+                    </div>
+                    <div class="form-group w-100">
+                        <label for="nome">HP:</label>
+                        <input type="number" class="form-control" id="hp_editar" placeholder="HP">
+                    </div>
+                    <div class="form-group w-100">
+                        <label for="nome">Energia Elemental:</label>
+                        <input type="number" class="form-control" id="ee_editar" placeholder="EE">
+                    </div>
+                    <div class="form-group w-100">
+                        <label for="nome">Ataque:</label>
+                        <input type="number" class="form-control" id="ataque_editar" placeholder="Ataque">
+                    </div>
+                </div>
+            </div>
+            <div class="status_restantes_editar">
+                <div class="d-flex">
+                    <div class="form-group w-50 mr-5">
+                        <label for="nome">Defesa:</label>
+                        <input type="number" class="form-control" id="defesa_editar" placeholder="Defesa">
+                    </div>
+                    <div class="form-group w-50">
+                        <label for="nome">Ataque Mágico:</label>
+                        <input type="number" class="form-control" id="sp_ataque_editar" placeholder="Ataque Mágico">
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    <div class="form-group w-50 mr-5">
+                        <label for="nome">Defesa Mágica:</label>
+                        <input type="number" class="form-control" id="sp_defesa_editar" placeholder="Defesa Mágica">
+                    </div>
+                    <div class="form-group w-50">
+                        <label for="nome">Velocidade</label>
+                        <input type="number" class="form-control" id="velocidade_editar" placeholder="Velocidade">
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills">
+                <div class="form-group">
+                    <label for="skill1">Skill 1:</label>
+                    <select class="form-control" id="skill1_editar">
+                        <option value="1">Investida</option>
+                        <option value="2">Golpe Rápido</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="skill2">Skill 2:</label>
+                    <select class="form-control" id="skill2_editar">
+                        <option value="1">Investida</option>
+                        <option value="2">Golpe Rápido</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="skill3">Skill 3:</label>
+                    <select class="form-control" id="skill3_editar">
+                        <option value="1">Investida</option>
+                        <option value="2">Golpe Rápido</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="skill4">Skill 4:</label>
+                    <select class="form-control" id="skill4_editar">
+                        <option value="1">Investida</option>
+                        <option value="2">Golpe Rápido</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Rodapé do modal -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-success" id="salvar_button_editar">Salvar</button>
+        </div>
+        
+      </div>
+    </div>
   </div>
 
     <script src="{% static 'js/gerenciar.js' %}"></script>

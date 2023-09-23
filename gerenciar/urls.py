@@ -19,4 +19,5 @@ from .views import gerenciar, PersonagensAPIView
 urlpatterns = [
     path('gerenciar/', gerenciar),
     path('personagens/', PersonagensAPIView.as_view()),
+    path('personagens/<int:id>', PersonagensAPIView.as_view()),
 ]

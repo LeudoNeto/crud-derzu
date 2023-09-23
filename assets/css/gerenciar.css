@@ -71,7 +71,7 @@ body {
     transition: 0.2s;
 }
 
-.personagem {
+.personagem, .criar_personagem {
     border: 1px solid black;
     border-radius: 4px;
     display: flex;
@@ -121,7 +121,7 @@ body {
     border-bottom: 4px solid rgb(38, 255, 38);
 }
 
-#pp_status {
+#ee_status {
     border-bottom: 4px solid rgb(51, 214, 255);
 }
 
@@ -164,7 +164,7 @@ body {
     transform: scaleX(-1);
 }
 
-.atribuir_status {
+.atribuir_status, .atribuir_status_editar {
     flex: 1;
     margin-left: 32px;
 }
@@ -173,7 +173,7 @@ body {
     display: flex;
 }
 
-#restantes_text {
+.restantes_text {
     margin-left: auto;
     margin-right: 8px;
 }
