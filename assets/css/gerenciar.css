@@ -177,3 +177,12 @@ body {
     margin-left: auto;
     margin-right: 8px;
 }
+
+.aparencia_detalhes {
+    display: flex;
+    flex-direction: column;
+}
+
+.aparencia_detalhes img {
+    width: 240px;
+}

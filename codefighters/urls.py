@@ -20,5 +20,6 @@ from core.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
-    path('gerenciar/', include('gerenciar.urls'))
+    path('', include('gerenciar.urls')),
+
 ]

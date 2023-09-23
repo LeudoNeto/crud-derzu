@@ -1,0 +1,12 @@
+1;Investida;-2;2;0;0;0.5;0;0;0;1.5
+2;golpe de escudo;-2;2;0;0;0.5;0.5;0;0;0
+3;golpe pesado;-4;4;0;0;2;0;0;0;0
+4;golpe poderoso;-2;8;0;0;1.5;0;0;0;0
+5;kickbox;-2;6;0;0;1;0;0;0;0
+6;bola de fogo;-5;1;0;0;0;0;3;0;0
+7;raio;-2;1;0;0;0;0;1.5;0;0
+8;flecha de gelo;-2;5;0;0;0;0;1;0;0
+9;bala magica;-1;8;0;0;0;0;0.5;0;0
+10;raio de vitalidade;-3;6;1.5;0;0;0;0.5;0;0
+11;golpe de vitalidade;-2;6;0.5;0;1.5;0;0;0;0
+12;bolha bomba;-2;1;0;0;0;0;0.5;0;0

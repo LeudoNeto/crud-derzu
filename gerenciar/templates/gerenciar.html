@@ -126,9 +126,11 @@
             <div class="form-group">
                 <label for="classe">Classe:</label>
                 <select class="form-control" id="classe">
-                    <option value="0">Guerreiro</option>
-                    <option value="1">Mago</option>
-                    <option value="2">Arqueiro</option>
+                    <option value="0">Berserker</option>
+                    <option value="1">Velocista</option>
+                    <option value="2">Estrategista</option>
+                    <option value="3">Mestre de defesa</option>
+                    <option value="4">Guerreiro Mágico</option>
                 </select>
             </div>
 
@@ -138,19 +140,19 @@
 
                     <div class="cabeca_choice">
                         <img src="{% static 'img/seta.png' %}" class="seta_esquerda">
-                        <img src="{% static 'partes_tratadas/cabeca1.png' %}" class="cabeca">
+                        <img src="{% static 'partes_tratadas/cabeca1.png' %}" data-value="1" class="cabeca">
                         <img src="{% static 'img/seta.png' %}" class="seta_direita">
                     </div>
 
                     <div class="corpo_choice">
                         <img src="{% static 'img/seta.png' %}" class="seta_esquerda">
-                        <img src="{% static 'partes_tratadas/corpo1.png' %}" class="corpo">
+                        <img src="{% static 'partes_tratadas/corpo1.png' %}" data-value="1" class="corpo">
                         <img src="{% static 'img/seta.png' %}" class="seta_direita">
                     </div>
 
                     <div class="pernas_choice">
                         <img src="{% static 'img/seta.png' %}" class="seta_esquerda">
-                        <img src="{% static 'partes_tratadas/pernas1.png' %}" class="pernas">
+                        <img src="{% static 'partes_tratadas/pernas1.png' %}" data-value="1" class="pernas">
                         <img src="{% static 'img/seta.png' %}" class="seta_direita">
                     </div>
                 </div>
@@ -236,6 +238,7 @@
         <!-- Rodapé do modal -->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-success" id="salvar_button">Salvar</button>
         </div>
         
       </div>
@@ -244,27 +247,125 @@
   
   <!-- O modal em si -->
   <div class="modal" id="modal_detalhes_personagem">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Cabeçalho do modal -->
-        <div class="modal-header">
-          <h4 class="modal-title">Detalhes de: Nome</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
+    <div class="modal-dialog" style="min-width: 650px;">
+        <div class="modal-content">
         
-        <!-- Corpo do modal -->
-        <div class="modal-body">
-          <p>Conteúdo do seu modal vai aqui.</p>
+          <!-- Cabeçalho do modal -->
+          <div class="modal-header">
+            <h4 class="modal-title">Detalhes de: </h4><h4 class="modal-title" style="margin-left: 8px;" id="nome_personagem_detalhes"></h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Corpo do modal -->
+          <div class="modal-body">
+  
+              <div class="form-group">
+                  <label for="nome">Nome:</label>
+                  <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+              </div>
+              <div class="form-group">
+                  <label for="classe">Classe:</label>
+                  <select class="form-control" id="classe">
+                      <option value="0">Berserker</option>
+                      <option value="1">Velocista</option>
+                      <option value="2">Estrategista</option>
+                      <option value="3">Mestre de defesa</option>
+                      <option value="4">Guerreiro Mágico</option>
+                  </select>
+              </div>
+  
+              <div class="aparencia_e_status">
+                  <div class="aparencia_detalhes">
+                      <span>Aparência:</span>
+                      <img src="{% static 'personagem_completo/0.png' %}" data-cabeca="1" data-corpo="1" data-pernas="1">
+                  </div>
+  
+                  <div class="atribuir_status_detalhes">
+                      <div class="status_text">
+                          <span>Status: (máx 100)</span>
+                      </div>
+                      <div class="form-group w-100">
+                          <label for="nome">HP:</label>
+                          <input type="number" class="form-control" id="hp" placeholder="HP">
+                      </div>
+                      <div class="form-group w-100">
+                          <label for="nome">Energia Elemental:</label>
+                          <input type="number" class="form-control" id="ee" placeholder="EE">
+                      </div>
+                      <div class="form-group w-100">
+                          <label for="nome">Ataque:</label>
+                          <input type="number" class="form-control" id="ataque" placeholder="Ataque">
+                      </div>
+                  </div>
+              </div>
+              <div class="status_restantes_detalhes">
+                  <div class="d-flex">
+                      <div class="form-group w-50 mr-5">
+                          <label for="nome">Defesa:</label>
+                          <input type="number" class="form-control" id="defesa" placeholder="Defesa">
+                      </div>
+                      <div class="form-group w-50">
+                          <label for="nome">Ataque Mágico:</label>
+                          <input type="number" class="form-control" id="sp_ataque" placeholder="Ataque Mágico">
+                      </div>
+                  </div>
+  
+                  <div class="d-flex">
+                      <div class="form-group w-50 mr-5">
+                          <label for="nome">Defesa Mágica:</label>
+                          <input type="number" class="form-control" id="sp_defesa" placeholder="Defesa Mágica">
+                      </div>
+                      <div class="form-group w-50">
+                          <label for="nome">Velocidade</label>
+                          <input type="number" class="form-control" id="velocidade" placeholder="Velocidade">
+                      </div>
+                  </div>
+              </div>
+  
+              <div class="skills">
+                  <div class="form-group">
+                      <label for="skill1">Skill 1:</label>
+                      <select class="form-control" id="skill1">
+                          <option value="0">Investida</option>
+                          <option value="1">Golpe Rápido</option>
+                      </select>
+                  </div>
+  
+                  <div class="form-group">
+                      <label for="skill2">Skill 2:</label>
+                      <select class="form-control" id="skill2">
+                          <option value="0">Investida</option>
+                          <option value="1">Golpe Rápido</option>
+                      </select>
+                  </div>
+  
+                  <div class="form-group">
+                      <label for="skill3">Skill 3:</label>
+                      <select class="form-control" id="skill3">
+                          <option value="0">Investida</option>
+                          <option value="1">Golpe Rápido</option>
+                      </select>
+                  </div>
+  
+                  <div class="form-group">
+                      <label for="skill4">Skill 4:</label>
+                      <select class="form-control" id="skill4">
+                          <option value="0">Investida</option>
+                          <option value="1">Golpe Rápido</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Rodapé do modal -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Editar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Deletar</button>
+          </div>
+          
         </div>
-        
-        <!-- Rodapé do modal -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        </div>
-        
       </div>
-    </div>
   </div>
 
     <script src="{% static 'js/gerenciar.js' %}"></script>
