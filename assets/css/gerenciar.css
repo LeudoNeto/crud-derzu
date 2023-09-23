@@ -164,7 +164,7 @@ body {
     transform: scaleX(-1);
 }
 
-.atribuir_status, .atribuir_status_editar {
+.atribuir_status, .atribuir_status_detalhes, .atribuir_status_editar {
     flex: 1;
     margin-left: 32px;
 }
