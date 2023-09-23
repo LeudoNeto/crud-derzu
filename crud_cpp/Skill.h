@@ -36,19 +36,30 @@ class Skill {
             file << std::endl;
         }
     
-        void read(std::ifstream& file) {
+        bool read(std::ifstream& file) {
             char separator;
-            file >> id >> separator;
+            if (!(file >> id >> separator)) {
+                return false; // Falha na leitura de id e separador
+            }
             std::getline(file, nome, ';');
-            file >> tipo >> separator;
-            file >> custo >> separator;
-            file >> dano_base >> separator;
+            if (!(file >> tipo >> separator)) {
+                return false; // Falha na leitura de tipo e separador
+            }
+            if (!(file >> custo >> separator)) {
+                return false; // Falha na leitura de custo e separador
+            }
+            if (!(file >> dano_base >> separator)) {
+                return false; // Falha na leitura de dano_base e separador
+            }
             for (int i = 0; i < 7; i++) {
-                file >> multiplicadores_atributos[i];
-                if (i < 6) {
-                    file >> separator;
+                if (!(file >> multiplicadores_atributos[i])) {
+                    return false; // Falha na leitura dos multiplicadores
+                }
+                if (i < 6 && !(file >> separator)) {
+                    return false; // Falha na leitura dos separadores
                 }
             }
+            return true; // Leitura bem-sucedida
         }
 
 

@@ -10,25 +10,24 @@ class Gerente {
     public:
         Skill getSkillById(int id) {
             Skill skill;
-            std::ifstream inFile("skills.txt");
-        
+            ifstream inFile("skills.txt");
+
             if (!inFile.is_open()) {
-                std::cerr << "Erro ao abrir o arquivo." << std::endl;
+                cerr << "Erro ao abrir o arquivo." << endl;
                 return skill; // Retorna uma Skill vazia em caso de erro
             }
 
-            while (inFile.good()) {
-                    skill.read(inFile); // Lê cada Skill do arquivo
-                    if (skill.id == id) {
-                        inFile.close(); // Fecha o arquivo
-                        return skill; // Retorna a Skill encontrada
-                    }
+            while (skill.read(inFile)) { // Lê cada Skill do arquivo
+                if (skill.id == id) {
+                    inFile.close(); // Fecha o arquivo
+                    return skill; // Retorna a Skill encontrada
                 }
-            
-                inFile.close(); // Fecha o arquivo
-                skill.id = -1; // Define o ID como -1 para indicar que a Skill não foi encontrada
-                return skill;
             }
+
+            inFile.close(); // Fecha o arquivo
+            skill.id = -1; // Define o ID como -1 para indicar que a Skill não foi encontrada
+            return skill;
+        }
 
         vector<Personagem> readPersonagens() {
             vector<Personagem> personagens;
