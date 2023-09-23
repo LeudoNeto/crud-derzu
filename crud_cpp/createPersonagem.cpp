@@ -12,4 +12,5 @@ int main(int argc, char *argv[]) {
                g.getSkillById(atoi(argv[16])));
 
   g.create(p);
+  cout << 200 << endl;
 }
