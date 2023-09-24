@@ -28,31 +28,31 @@
         <div class="atributos">
             <div class="atributo">
                 <h5>HP</h5>
-                <h5 id="hp_1">{{ personagem_1.hp }}</h5>
+                <h5 class="hp" id="hp_1">{{ personagem_1.hp }}</h5>
             </div>
             <div class="atributo">
                 <h5>EE</h5>
-                <h5 id="ee_1">{{ personagem_1.ee }}</h5>
+                <h5 class="ee" id="ee_1">{{ personagem_1.ee }}</h5>
             </div>
             <div class="atributo">
                 <h5>Ataque</h5>
-                <h5 id="ataque_1">{{ personagem_1.ataque }}</h5>
+                <h5 class="ataque" id="ataque_1">{{ personagem_1.ataque }}</h5>
             </div>
             <div class="atributo">
                 <h5>Defesa</h5>
-                <h5 id="defesa_1">{{ personagem_1.defesa }}</h5>
+                <h5 class="defesa" id="defesa_1">{{ personagem_1.defesa }}</h5>
             </div>
             <div class="atributo">
                 <h5>Ataque Mágico</h5>
-                <h5 id="sp_ataque_1">{{ personagem_1.sp_ataque }}</h5>
+                <h5 class="sp_ataque" id="sp_ataque_1">{{ personagem_1.sp_ataque }}</h5>
             </div>
             <div class="atributo">
                 <h5>Defesa Mágica</h5>
-                <h5 id="sp_defesa_1">{{ personagem_1.sp_defesa }}</h5>
+                <h5 class="sp_defesa" id="sp_defesa_1">{{ personagem_1.sp_defesa }}</h5>
             </div>
             <div class="atributo">
                 <h5>Velocidade</h5>
-                <h5 id="velocidade_1">{{ personagem_1.velocidade }}</h5>
+                <h5 class="velocidade" id="velocidade_1">{{ personagem_1.velocidade }}</h5>
             </div>
         </div>
     </div>
@@ -61,6 +61,7 @@
         <img src="{% static "img/mapa_partida.png" %}" id="mapa">
         <img src="/assets/personagem_completo/{{ personagem_1.aparencia }}.png" id="personagem_1_imagem">
         <img src="/assets/personagem_completo/{{ personagem_2.aparencia }}.png" id="personagem_2_imagem">
+        <img src="{% static "img/briga_desenho.png" %}" class="briga_img">
         
         <div class="acoes">
             <div class="escolha_texto">
@@ -95,31 +96,31 @@
         <div class="atributos">
             <div class="atributo">
                 <h5>HP</h5>
-                <h5 id="hp_2">{{ personagem_2.hp }}</h5>
+                <h5 class="hp" id="hp_2">{{ personagem_2.hp }}</h5>
             </div>
             <div class="atributo">
                 <h5>EE</h5>
-                <h5 id="ee_2">{{ personagem_2.ee }}</h5>
+                <h5 class="ee" id="ee_2">{{ personagem_2.ee }}</h5>
             </div>
             <div class="atributo">
                 <h5>Ataque</h5>
-                <h5 id="ataque_2">{{ personagem_2.ataque }}</h5>
+                <h5 class="ataque" id="ataque_2">{{ personagem_2.ataque }}</h5>
             </div>
             <div class="atributo">
                 <h5>Defesa</h5>
-                <h5 id="defesa_2">{{ personagem_2.defesa }}</h5>
+                <h5 class="defesa" id="defesa_2">{{ personagem_2.defesa }}</h5>
             </div>
             <div class="atributo">
                 <h5>Ataque Mágico</h5>
-                <h5 id="sp_ataque_2">{{ personagem_2.sp_ataque }}</h5>
+                <h5 class="sp_ataque" id="sp_ataque_2">{{ personagem_2.sp_ataque }}</h5>
             </div>
             <div class="atributo">
                 <h5>Defesa Mágica</h5>
-                <h5 id="sp_defesa_2">{{ personagem_2.sp_defesa }}</h5>
+                <h5 class="sp_defesa" id="sp_defesa_2">{{ personagem_2.sp_defesa }}</h5>
             </div>
             <div class="atributo">
                 <h5>Velocidade</h5>
-                <h5 id="velocidade_2">{{ personagem_2.velocidade }}</h5>
+                <h5 class="velocidade" id="velocidade_2">{{ personagem_2.velocidade }}</h5>
             </div>
         </div>
     </div>

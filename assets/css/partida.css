@@ -77,14 +77,20 @@ body {
     position: absolute;
     top: calc(75vh*0.85 - 130px);
     right: calc(50vw + 25vh - 120px);
-    /* animation: moveAnimation1 1s ease-in-out infinite alternate; */
 }
 
 #personagem_2_imagem {
     position: absolute;
     top: calc(75vh*0.55 - 140px);
     right: calc(50vw - 25vh - 20px);
-    /* animation: moveAnimation2 1s ease-in-out infinite alternate; */
+}
+
+.animacao1 {
+    animation: moveAnimation1 1s ease-in-out infinite alternate;
+}
+
+.animacao2 {
+    animation: moveAnimation2 1s ease-in-out infinite alternate;
 }
 
 @keyframes moveAnimation1 {
@@ -102,5 +108,27 @@ body {
     }
     100% {
         transform: translate(-60px, 60px);
+    }
+}
+
+.briga_img {
+    position: absolute;
+    top: 35vh - 500px;
+    width: 0;
+    height: 0;
+}
+
+.briga_animacao {
+    animation: zoomInAndOut 2s linear infinite;
+}
+
+@keyframes zoomInAndOut {
+    0%, 100% {
+        width: 0;
+        height: 0;
+    }
+    50% {
+        width: 60vh;
+        height: 60vh;
     }
 }

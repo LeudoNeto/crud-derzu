@@ -1,4 +1,6 @@
 from django.shortcuts import render
+import json
+from django.http import JsonResponse
 
 # Create your views here.
 def escolher_personagens(request):
@@ -69,7 +71,7 @@ def partida(request, id_1, id_2):
         'defesa': 10,
         'sp_ataque': 10,
         'sp_defesa': 10,
-        'velocidade': 10,
+        'velocidade': 100,
         's1_id': 1,
         's1_nome': 'Investida',
         's2_id': 2,
@@ -108,5 +110,27 @@ def partida(request, id_1, id_2):
     return render(request, 'partida.html', context)
 
 def calcular_dano(request):
-    data = request.POST
-    print(data)
+    data = json.loads(request.body)
+    id = data.get('id')
+    return JsonResponse({'dano': 50})
+
+def passiva(request):
+    data = json.loads(request.body)
+    hp = data.get('hp')
+    ee = data.get('ee')
+    ataque = data.get('ataque')
+    defesa = data.get('defesa')
+    sp_ataque = data.get('sp_ataque')
+    sp_defesa = data.get('sp_defesa')
+    velocidade = data.get('velocidade')
+
+    novos_atributos = {
+        'hp': int(hp)+2,
+        'ee': int(ee)+10,
+        'ataque': int(ataque)+3,
+        'defesa': int(defesa)+5,
+        'sp_ataque': sp_ataque,
+        'sp_defesa': sp_defesa,
+        'velocidade': velocidade
+    }
+    return JsonResponse(novos_atributos)
