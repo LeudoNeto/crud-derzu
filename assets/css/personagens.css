@@ -1,0 +1,66 @@
+body {
+    background-color: rgb(204, 85, 64) !important;
+}
+
+.selecionados {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.selecionado {
+    background-color: rgb(163, 61, 43);
+    width: 320px;
+    height: fit-content;
+    padding: 16px;
+    margin: 32px 64px;
+    border: 2px solid black;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+#nome_selecionado_1, #nome_selecionado_2 {
+    text-align: center;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.cabeca_container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.cabeca {
+    width: 50%;
+}
+
+.atributo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.personagens {
+    display: flex;
+}
+
+.personagem {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 8px;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.2s;
+    cursor: pointer;
+    overflow: hidden; /* esconde o conteúdo excedente */
+    white-space: nowrap; /* impede que o texto quebre em várias linhas */
+}
+
+.personagem:hover {
+    background-color: #5f89b4;
+    transition: 0.2s;
+}

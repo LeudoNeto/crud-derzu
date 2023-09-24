@@ -1,0 +1,106 @@
+body {
+    background-color: rgb(204, 85, 64) !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.personagem {
+    background-color: rgb(163, 61, 43);
+    width: 240px;
+    height: fit-content;
+    padding: 16px;
+    margin: 32px;
+    border: 2px solid black;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.atributo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.jogo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#mapa {
+    height: 70vh;
+}
+
+.acoes {
+    background-color: rgb(255, 200, 47);
+    padding: 8px;
+    height: fit-content;
+    width: 100%;
+}
+
+.escolha_texto {
+    text-align: center;
+    font-size: 16px;
+}
+
+#nome_personagem_atual {
+    margin: 0 8px;
+    font-weight: bold;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 8px 0;
+    justify-content: center;
+}
+
+.skill {
+    width: 40%;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    margin: 8px;
+    transition: 0.2s;
+}
+
+.skill:hover {
+    background-color: rgb(219, 161, 0);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+#personagem_1_imagem {
+    position: absolute;
+    top: calc(75vh*0.85 - 130px);
+    right: calc(50vw + 25vh - 120px);
+    /* animation: moveAnimation1 1s ease-in-out infinite alternate; */
+}
+
+#personagem_2_imagem {
+    position: absolute;
+    top: calc(75vh*0.55 - 140px);
+    right: calc(50vw - 25vh - 20px);
+    /* animation: moveAnimation2 1s ease-in-out infinite alternate; */
+}
+
+@keyframes moveAnimation1 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(60px, -60px);
+    }
+}
+
+@keyframes moveAnimation2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-60px, 60px);
+    }
+}

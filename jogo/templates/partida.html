@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/partida.css' %}">
+    <title>Partida</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static "lib\sweetalert2.all.min.js" %}"></script>
+</head>
+<body>
+    <div class="personagem" id="personagem_1" data-id="{{ personagem_1.id }}" data-nome="{{ personagem_1.nome }}"
+    data-hp="{{ personagem_1.hp }}" data-ee="{{ personagem_1.ee }}" data-ataque="{{ personagem_1.ataque }}" 
+    data-defesa="{{ personagem_1.defesa }}" data-sp_ataque="{{ personagem_1.sp_ataque }}" data-sp_defesa="{{ personagem_1.sp_defesa }}" 
+    data-velocidade="{{ personagem_1.velocidade }}" data-skill1-id="{{ personagem_1.s1_id }}" data-skill2-id="{{ personagem_1.s2_id }}"
+    data-skill3-id="{{ personagem_1.s3_id }}" data-skill4-id="{{ personagem_1.s4_id }}" data-skill1-nome="{{ personagem_1.s1_nome }}"
+    data-skill2-nome="{{ personagem_1.s2_nome }}" data-skill3-nome="{{ personagem_1.s3_nome }}" data-skill4-nome="{{ personagem_1.s4_nome }}">
+        <h2 id="nome_personagem_1">{{ personagem_1.nome }}</h2>
+        <div class="cabeca_container">
+        </div>
+        <div class="atributos">
+            <div class="atributo">
+                <h5>HP</h5>
+                <h5 id="hp_1">{{ personagem_1.hp }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>EE</h5>
+                <h5 id="ee_1">{{ personagem_1.ee }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>Ataque</h5>
+                <h5 id="ataque_1">{{ personagem_1.ataque }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>Defesa</h5>
+                <h5 id="defesa_1">{{ personagem_1.defesa }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>Ataque Mágico</h5>
+                <h5 id="sp_ataque_1">{{ personagem_1.sp_ataque }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>Defesa Mágica</h5>
+                <h5 id="sp_defesa_1">{{ personagem_1.sp_defesa }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>Velocidade</h5>
+                <h5 id="velocidade_1">{{ personagem_1.velocidade }}</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="jogo">
+        <img src="{% static "img/mapa_partida.png" %}" id="mapa">
+        <img src="/assets/personagem_completo/{{ personagem_1.aparencia }}.png" id="personagem_1_imagem">
+        <img src="/assets/personagem_completo/{{ personagem_2.aparencia }}.png" id="personagem_2_imagem">
+        
+        <div class="acoes">
+            <div class="escolha_texto">
+                <span>Escolha a Skill que:</span><span id="nome_personagem_atual">{{ personagem_1.nome }}</span><span>vai usar.</span>
+            </div>
+            <div class="skills">
+                <div class="skill" id="skill_1">
+                    <h5 data-id="{{ personagem_1.s1_id }}">{{ personagem_1.s1_nome }}</h5>
+                </div>
+                <div class="skill" id="skill_2">
+                    <h5 data-id="{{ personagem_1.s2_id }}">{{ personagem_1.s2_nome }}</h5>
+                </div>
+                <div class="skill" id="skill_3">
+                    <h5 data-id="{{ personagem_1.s3_id }}">{{ personagem_1.s3_nome }}</h5>
+                </div>
+                <div class="skill" id="skill_4">
+                    <h5 data-id="{{ personagem_1.s4_id }}">{{ personagem_1.s4_nome }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="personagem" id="personagem_2" data-id="{{ personagem_2.id }}" data-nome="{{ personagem_2.nome }}"
+    data-hp="{{ personagem_2.hp }}" data-ee="{{ personagem_2.ee }}" data-ataque="{{ personagem_2.ataque }}" 
+    data-defesa="{{ personagem_2.defesa }}" data-sp_ataque="{{ personagem_2.sp_ataque }}" data-sp_defesa="{{ personagem_2.sp_defesa }}" 
+    data-velocidade="{{ personagem_2.velocidade }}" data-skill1-id="{{ personagem_2.s1_id }}" data-skill2-id="{{ personagem_2.s2_id }}"
+    data-skill3-id="{{ personagem_2.s3_id }}" data-skill4-id="{{ personagem_2.s4_id }}" data-skill1-nome="{{ personagem_2.s1_nome }}"
+    data-skill2-nome="{{ personagem_2.s2_nome }}" data-skill3-nome="{{ personagem_2.s3_nome }}" data-skill4-nome="{{ personagem_2.s4_nome }}">
+        <h2 id="nome_personagem_2">{{ personagem_2.nome }}</h2>
+        <div class="cabeca_container">
+        </div>
+        <div class="atributos">
+            <div class="atributo">
+                <h5>HP</h5>
+                <h5 id="hp_2">{{ personagem_2.hp }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>EE</h5>
+                <h5 id="ee_2">{{ personagem_2.ee }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>Ataque</h5>
+                <h5 id="ataque_2">{{ personagem_2.ataque }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>Defesa</h5>
+                <h5 id="defesa_2">{{ personagem_2.defesa }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>Ataque Mágico</h5>
+                <h5 id="sp_ataque_2">{{ personagem_2.sp_ataque }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>Defesa Mágica</h5>
+                <h5 id="sp_defesa_2">{{ personagem_2.sp_defesa }}</h5>
+            </div>
+            <div class="atributo">
+                <h5>Velocidade</h5>
+                <h5 id="velocidade_2">{{ personagem_2.velocidade }}</h5>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/partida.js' %}"></script>
+</body>
+</html>

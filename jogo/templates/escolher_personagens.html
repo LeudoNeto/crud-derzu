@@ -16,10 +16,90 @@
     <script src="{% static "lib\sweetalert2.all.min.js" %}"></script>
 </head>
 <body>
+    <div class="selecionados">
+        <div class="selecionado" id="selecionado_1">
+            <h2 id="nome_selecionado_1">????</h2>
+            <div class="cabeca_container">
+                <img class="cabeca" src="/assets/partes_tratadas/cabeca1.png">
+            </div>
+            <div class="atributos">
+                <div class="atributo">
+                    <h5>HP</h5>
+                    <h5 id="hp_1">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>EE</h5>
+                    <h5 id="ee_1">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>Ataque</h5>
+                    <h5 id="ataque_1">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>Defesa</h5>
+                    <h5 id="defesa_1">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>Ataque Mágico</h5>
+                    <h5 id="sp_ataque_1">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>Defesa Mágica</h5>
+                    <h5 id="sp_defesa_1">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>Velocidade</h5>
+                    <h5 id="velocidade_1">??</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="selecionado" id="selecionado_2">
+            <h2 id="nome_selecionado_2">????</h2>
+            <div class="cabeca_container">
+                <img class="cabeca" src="/assets/partes_tratadas/cabeca2.png">
+            </div>
+            <div class="atributos">
+                <div class="atributo">
+                    <h5>HP</h5>
+                    <h5 id="hp_2">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>EE</h5>
+                    <h5 id="ee_2">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>Ataque</h5>
+                    <h5 id="ataque_2">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>Defesa</h5>
+                    <h5 id="defesa_2">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>Ataque Mágico</h5>
+                    <h5 id="sp_ataque_2">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>Defesa Mágica</h5>
+                    <h5 id="sp_defesa_2">??</h5>
+                </div>
+                <div class="atributo">
+                    <h5>Velocidade</h5>
+                    <h5 id="velocidade_2">??</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="personagens">
         {% for personagem in personagens %}
-            <div class="personagem">
-                
+            <div class="personagem" data-id="{{ personagem.id }}"
+            data-hp="{{ personagem.hp }}" data-ee="{{ personagem.ee }}" data-ataque="{{ personagem.ataque }}" 
+            data-defesa="{{ personagem.defesa }}" data-sp_ataque="{{ personagem.sp_ataque }}" data-sp_defesa="{{ personagem.sp_defesa }}" 
+            data-velocidade="{{ personagem.velocidade }}">
+                <img class="cabeca" src="/assets/partes_tratadas/cabeca{{ personagem.cabeca }}.png">
+                <h5 class="personagem_nome">{{ personagem.nome }}</h5>
             </div>
         {% endfor %}
     </div>
