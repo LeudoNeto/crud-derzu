@@ -186,3 +186,7 @@ body {
 .aparencia_detalhes img {
     width: 240px;
 }
+
+.info_classes td:nth-child(2) {
+    padding: 8px 0; /* Ajuste o valor conforme desejado */
+  }

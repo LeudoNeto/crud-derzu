@@ -14,7 +14,7 @@ public:
 
     // Sobrescreva o método 'passive' na classe derivada
     void passiva() {
-        velocidade = velocidade * 1.1;
+        velocidade = velocidade * 1.2;
     }
 
     Velocista() {}

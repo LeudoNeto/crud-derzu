@@ -13,8 +13,8 @@ public:
 
     // Sobrescreva o método 'passive' na classe derivada
     void passiva() {
-        defesa += 5;
-        sp_defesa += 5;
+        defesa += 3;
+        sp_defesa += 3;
     }
 
     Paladino() {}

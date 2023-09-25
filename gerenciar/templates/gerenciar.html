@@ -72,13 +72,17 @@
                 <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
             </div>
             <div class="form-group">
-                <label for="classe">Classe:</label>
+                <div style="display: flex; justify-content: space-between;">
+                    <label for="classe">Classe:</label>
+                    <button class="btn btn-sm btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#modal_info_classes">Saiba Mais</button>
+                </div>
                 <select class="form-control" id="classe">
-                    <option value="0">Berserker</option>
-                    <option value="1">Velocista</option>
-                    <option value="2">Estrategista</option>
-                    <option value="3">Mestre de defesa</option>
-                    <option value="4">Guerreiro Mágico</option>
+                    <option value="0">Assassino</option>
+                    <option value="1">Berserker</option>
+                    <option value="2">Oscilante</option>
+                    <option value="3">Paladino</option>
+                    <option value="4">Regenerador</option>
+                    <option value="5">Velocista</option>
                 </select>
             </div>
 
@@ -254,11 +258,12 @@
               <div class="form-group">
                   <label for="classe">Classe:</label>
                   <select class="form-control" id="classe_detalhes" disabled>
-                      <option value="0">Berserker</option>
-                      <option value="1">Velocista</option>
-                      <option value="2">Estrategista</option>
-                      <option value="3">Mestre de defesa</option>
-                      <option value="4">Guerreiro Mágico</option>
+                    <option value="0">Assassino</option>
+                    <option value="1">Berserker</option>
+                    <option value="2">Oscilante</option>
+                    <option value="3">Paladino</option>
+                    <option value="4">Regenerador</option>
+                    <option value="5">Velocista</option>
                   </select>
               </div>
   
@@ -418,11 +423,12 @@
             <div class="form-group">
                 <label for="classe">Classe:</label>
                 <select class="form-control" id="classe_editar">
-                    <option value="0">Berserker</option>
-                    <option value="1">Velocista</option>
-                    <option value="2">Estrategista</option>
-                    <option value="3">Mestre de defesa</option>
-                    <option value="4">Guerreiro Mágico</option>
+                    <option value="0">Assassino</option>
+                    <option value="1">Berserker</option>
+                    <option value="2">Oscilante</option>
+                    <option value="3">Paladino</option>
+                    <option value="4">Regenerador</option>
+                    <option value="5">Velocista</option>
                 </select>
             </div>
 
@@ -571,6 +577,82 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
           <button type="button" class="btn btn-success" id="salvar_button_editar">Salvar</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- O modal em si -->
+  <div class="modal" id="modal_info_classes">
+    <div class="modal-dialog" style="min-width: 650px;">
+      <div class="modal-content">
+      
+        <!-- Cabeçalho do modal -->
+        <div class="modal-header">
+          <h4 class="modal-title">Informações de Classes</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Corpo do modal -->
+        <div class="modal-body">
+
+            <table class="info_classes">
+                <thead>
+                    <tr>
+                        <th>Classe</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Assassino</td>
+                        <td>
+                            Classe focada em ataques rápidos e furtivos, com uma grande velocidade e dano e.
+                            Para cada round, ganha 4 de Ataque e 4 de Velocidade, mas perde 2 de Defesa.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Berserker</td>
+                        <td>
+                            Classe focada em ataques pesados e brutos, com uma grande força e dano.
+                            Para cada round, ganha 3 de Ataque e 3 de Ataque Mágico.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Oscilante</td>
+                        <td>
+                            Classe versátil que depende constantemente da sorte.
+                            Para cada round, você ganhará 15% a mais em todos os seus atributos, ou perderá 10% deles, dependendo da sorte.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Paladino</td>
+                        <td>
+                            Classe focada em defesa e suporte, com uma grande defesa e defesa mágica.
+                            Para cada round, ganha 3 de Defesa e 3 de Defesa Mágica.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pr-2">Regenerador</td>
+                        <td>
+                            Classe focada em regeneração, com uma grande regeneração de HP.
+                            Para cada round, regenera a vida.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Velocista</td>
+                        <td>
+                            Classe focada em velocidade.
+                            Para cada round, ganha 20% a mais de velocidade.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        <!-- Rodapé do modal -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#modal_criacao_personagem">Voltar</button>
         </div>
         
       </div>

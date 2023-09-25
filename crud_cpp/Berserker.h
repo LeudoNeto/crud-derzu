@@ -13,10 +13,8 @@ public:
 
     // Sobrescreva o método 'passive' na classe derivada
     void passiva() {
-        ataque += 4;
-        velocidade += 4;
-        defesa -= 2;
-        if(defesa <= 0) defesa = 0;
+        ataque += 3;
+        sp_ataque += 3;
     }
 
     Berserker() {}
