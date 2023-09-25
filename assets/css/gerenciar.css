@@ -189,4 +189,12 @@ body {
 
 .info_classes td:nth-child(2) {
     padding: 8px 0; /* Ajuste o valor conforme desejado */
-  }
+}
+
+.info_skills {
+    text-align: center;
+}
+
+.info_skills th {
+    padding: 0 8px;
+}

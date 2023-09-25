@@ -154,7 +154,10 @@
 
             <div class="skills">
                 <div class="form-group">
-                    <label for="skill1">Skill 1:</label>
+                    <div style="display: flex; justify-content: space-between;">
+                        <label for="skill1">Skill 1:</label>
+                        <button class="btn btn-sm btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#modal_info_skills">Saiba Mais</button>
+                    </div>
                     <select class="form-control" id="skill1">
                         <option value="1">Investida</option>
                         <option value="2">Golpe de Escudo</option>
@@ -421,7 +424,10 @@
                 <input type="text" class="form-control" id="nome_editar" placeholder="Digite seu nome">
             </div>
             <div class="form-group">
-                <label for="classe">Classe:</label>
+                <div style="display: flex; justify-content: space-between;">
+                    <label for="classe">Classe:</label>
+                    <button class="btn btn-sm btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#modal_info_classes">Saiba Mais</button>
+                </div>
                 <select class="form-control" id="classe_editar">
                     <option value="0">Assassino</option>
                     <option value="1">Berserker</option>
@@ -500,7 +506,10 @@
 
             <div class="skills">
                 <div class="form-group">
-                    <label for="skill1">Skill 1:</label>
+                    <div style="display: flex; justify-content: space-between;">
+                        <label for="skill1">Skill 1:</label>
+                        <button class="btn btn-sm btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#modal_info_skills">Saiba Mais</button>
+                    </div>
                     <select class="form-control" id="skill1_editar">
                         <option value="1">Investida</option>
                         <option value="2">Golpe de Escudo</option>
@@ -649,6 +658,207 @@
                     </tr>
                 </tbody>
             </table>
+        </div>    
+
+        <!-- Rodapé do modal -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#modal_criacao_personagem">Voltar</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- O modal em si -->
+  <div class="modal" id="modal_info_skills">
+    <div class="modal-dialog" style="min-width: fit-content;">
+      <div class="modal-content">
+      
+        <!-- Cabeçalho do modal -->
+        <div class="modal-header">
+          <h4 class="modal-title">Informações de Habilidades</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Corpo do modal -->
+        <div class="modal-body">
+
+            <table class="info_skills">
+                <thead>
+                    <tr>
+                        <th>Habilidade</th>
+                        <th>Tipo</th>
+                        <th>Custo</th>
+                        <th>Dano Base</th>
+                        <th>M. HP</th>
+                        <th>M. EE</th>
+                        <th>M. Ataque</th>
+                        <th>M. Defesa</th>
+                        <th>M. Ataque Mágico</th>
+                        <th>M. Defesa Mágica</th>
+                        <th>M. Velocidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Investida</td>
+                        <td>Físico</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1.5</td>
+                    </tr>
+                    <tr>
+                        <td>Golpe de Escudo</td>
+                        <td>Físico</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.5</td>
+                        <td>0.5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Golpe Pesado</td>
+                        <td>Físico</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Golpe Poderoso</td>
+                        <td>Físico</td>
+                        <td>2</td>
+                        <td>8</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1.5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Kickbox</td>
+                        <td>Físico</td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Bola de Fogo</td>
+                        <td>Mágico</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Raio</td>
+                        <td>Mágico</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1.5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Flecha de Gelo</td>
+                        <td>Mágico</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Bala Mágica</td>
+                        <td>Mágico</td>
+                        <td>1</td>
+                        <td>8</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Raio de Vitalidade</td>
+                        <td>Mágico</td>
+                        <td>3</td>
+                        <td>6</td>
+                        <td>0.15</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Golpe de Vitalidade</td>
+                        <td>Físico</td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>0.05</td>
+                        <td>0</td>
+                        <td>1.5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Bolha Bomba</td>
+                        <td>Mágico</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
             
         <!-- Rodapé do modal -->
         <div class="modal-footer">
