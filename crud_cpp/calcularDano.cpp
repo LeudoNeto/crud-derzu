@@ -1,7 +1,7 @@
 #include "Skill.h"
 #include "Gerente.h"
 
-void Skill::calcularDano(int hp, int pw, int atk, int def, int m_atk, 
+void Skill::calcular_dano(int hp, int pw, int atk, int def, int m_atk, 
 int m_def, int spd, int def_en, int m_def_en) {
 
     float dano_verdadeiro = (dano_base 

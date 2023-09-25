@@ -1,106 +1,114 @@
 from django.shortcuts import render
 import json
 from django.http import JsonResponse
+import subprocess
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
 # Create your views here.
 def escolher_personagens(request):
-    personagens = [
-        {
-            'id': 1,
-            'nome': 'Cleitin',
-            'cabeca': 1,
-            'hp': 10,
-            'ee': 10,
-            'ataque': 10,
-            'defesa': 10,
-            'sp_ataque': 10,
-            'sp_defesa': 10,
-            'velocidade': 10
-        },
-        {
-            'id': 1,
-            'nome': 'Jorgin',
-            'cabeca': 2,
-            'hp': 20,
-            'ee': 5,
-            'ataque': 8,
-            'defesa': 4,
-            'sp_ataque': 5,
-            'sp_defesa': 2,
-            'velocidade': 20
-        },
-        {
-            'id': 1,
-            'nome': 'Carlinhos',
-            'cabeca': 3,
-            'hp': 10,
-            'ee': 20,
-            'ataque': 30,
-            'defesa': 5,
-            'sp_ataque': 1,
-            'sp_defesa': 20,
-            'velocidade': 1
-        },
-        {
-            'id': 1,
-            'nome': 'Giorno Giovanna',
-            'cabeca': 1,
-            'hp': 100,
-            'ee': 100,
-            'ataque': 100,
-            'defesa': 100,
-            'sp_ataque': 100,
-            'sp_defesa': 100,
-            'velocidade': 100
-        },
-    ]
+    completed_process = subprocess.run("./crud_cpp/read", stdout=subprocess.PIPE, text=True, shell=True)
+    output = completed_process.stdout
+
+    personagens = []
+    linhas = output.split('\n')[:-1]
+
+    # Itere pelas linhas e crie um dicionário para cada personagem
+    for linha in linhas:
+        campos = linha.split(';')
+        personagem = {
+        "id": int(campos[0]),
+        "classe": campos[1],
+        "nome": campos[2],
+        "aparencia": (int(campos[3])-1)*9 + (int(campos[4])-1)*3 + (int(campos[5])-1),
+        "cabeca": int(campos[3]),
+        "corpo": int(campos[4]),
+        "pernas": int(campos[5]),
+        "hp": int(campos[6]),
+        "ee": int(campos[7]),
+        "ataque": int(campos[8]),
+        "defesa": int(campos[9]),
+        "sp_ataque": int(campos[10]),
+        "sp_defesa": int(campos[11]),
+        "velocidade": int(campos[12]),
+        "skill1": campos[13],
+        "skill2": campos[14],
+        "skill3": campos[15],
+        "skill4": campos[16],
+        }
+
+        personagens.append(personagem)
+
     context = {
         'personagens': personagens
     }
     return render(request, 'escolher_personagens.html', context)
 
 def partida(request, id_1, id_2):
+
+    skills = ['Investida', 'golpe de escudo', 'golpe pesado', 
+                  'golpe poderoso', 'kickbox', 'bola de fogo', 
+                  'raio', 'flecha de gelo', 'bala magica', 
+                  'raio de vitalidade', 'golpe de vitalidade', 
+                  'bolha bomba']
+
+    completed_process = subprocess.run(f"./crud_cpp/readById {id_1}", stdout=subprocess.PIPE, text=True, shell=True)
+    output = completed_process.stdout
+
+    campos = output.split(';')
     personagem_1 = {
-        'id': 1,
-        'nome': 'Cleitin',
-        'cabeca': 1,
-        'aparencia': 0,
-        'hp': 100,
-        'ee': 10,
-        'ataque': 10,
-        'defesa': 10,
-        'sp_ataque': 10,
-        'sp_defesa': 10,
-        'velocidade': 100,
-        's1_id': 1,
-        's1_nome': 'Investida',
-        's2_id': 2,
-        's2_nome': 'golpe de escudo',
-        's3_id': 3,
-        's3_nome': 'golpe pesado',
-        's4_id': 4,
-        's4_nome': 'golpe poderoso'
+        "id": int(campos[0]),
+        "classe": campos[1],
+        "nome": campos[2],
+        "aparencia": (int(campos[3])-1)*9 + (int(campos[4])-1)*3 + (int(campos[5])-1),
+        "cabeca": int(campos[3]),
+        "corpo": int(campos[4]),
+        "pernas": int(campos[5]),
+        "hp": int(campos[6])*10,
+        "ee": int(campos[7]),
+        "ataque": int(campos[8]),
+        "defesa": int(campos[9]),
+        "sp_ataque": int(campos[10]),
+        "sp_defesa": int(campos[11]),
+        "velocidade": int(campos[12]),
+        "s1_id": campos[13],
+        "s1_nome": skills[int(campos[13])-1],
+        "s2_id": campos[14],
+        "s2_nome": skills[int(campos[14])-1],
+        "s3_id": campos[15],
+        "s3_nome": skills[int(campos[15])-1],
+        "s4_id": campos[16][:-1],
+        "s4_nome": skills[int(campos[16][:-1])-1]
     }
+
+    completed_process = subprocess.run(f"./crud_cpp/readById {id_2}", stdout=subprocess.PIPE, text=True, shell=True)
+    output = completed_process.stdout
+
+    campos = output.split(';')
     personagem_2 = {
-        'id': 1,
-        'nome': 'Jorgin',
-        'cabeca': 2,
-        'aparencia': 9,
-        'hp': 200,
-        'ee': 5,
-        'ataque': 8,
-        'defesa': 4,
-        'sp_ataque': 5,
-        'sp_defesa': 2,
-        'velocidade': 20,
-        's1_id': 5,
-        's1_nome': 'kickbox',
-        's2_id': 6,
-        's2_nome': 'bola de fogo',
-        's3_id': 7,
-        's3_nome': 'raio',
-        's4_id': 8,
-        's4_nome': 'flecha de gelo'
+        "id": int(campos[0]),
+        "classe": campos[1],
+        "nome": campos[2],
+        "aparencia": (int(campos[3])-1)*9 + (int(campos[4])-1)*3 + (int(campos[5])-1),
+        "cabeca": int(campos[3]),
+        "corpo": int(campos[4]),
+        "pernas": int(campos[5]),
+        "hp": int(campos[6])*10,
+        "ee": int(campos[7]),
+        "ataque": int(campos[8]),
+        "defesa": int(campos[9]),
+        "sp_ataque": int(campos[10]),
+        "sp_defesa": int(campos[11]),
+        "velocidade": int(campos[12]),
+        "s1_id": campos[13],
+        "s1_nome": skills[int(campos[13])-1],
+        "s2_id": campos[14],
+        "s2_nome": skills[int(campos[14])-1],
+        "s3_id": campos[15],
+        "s3_nome": skills[int(campos[15])-1],
+        "s4_id": campos[16][:-1],
+        "s4_nome": skills[int(campos[16][:-1])-1]
     }
 
     context = {
@@ -109,28 +117,63 @@ def partida(request, id_1, id_2):
     }
     return render(request, 'partida.html', context)
 
-def calcular_dano(request):
-    data = json.loads(request.body)
-    id = data.get('id')
-    return JsonResponse({'dano': 50})
+class calcular_dano(APIView):
 
-def passiva(request):
-    data = json.loads(request.body)
-    hp = data.get('hp')
-    ee = data.get('ee')
-    ataque = data.get('ataque')
-    defesa = data.get('defesa')
-    sp_ataque = data.get('sp_ataque')
-    sp_defesa = data.get('sp_defesa')
-    velocidade = data.get('velocidade')
+    def post(self, request):
+        id = request.data.get('id')
+        hp = request.data.get('hp')
+        ee = request.data.get('ee')
+        ataque = request.data.get('ataque')
+        defesa = request.data.get('defesa')
+        sp_ataque = request.data.get('sp_ataque')
+        sp_defesa = request.data.get('sp_defesa')
+        velocidade = request.data.get('velocidade')
+        alvo_defesa = request.data.get('alvo_defesa')
+        alvo_sp_defesa = request.data.get('alvo_sp_defesa')
 
-    novos_atributos = {
-        'hp': int(hp)+2,
-        'ee': int(ee)+10,
-        'ataque': int(ataque)+3,
-        'defesa': int(defesa)+5,
-        'sp_ataque': sp_ataque,
-        'sp_defesa': sp_defesa,
-        'velocidade': velocidade
-    }
-    return JsonResponse(novos_atributos)
+        dados_ordenados = [id, hp, ee, ataque, defesa, sp_ataque, 
+                             sp_defesa, velocidade, alvo_defesa, alvo_sp_defesa]
+
+        completed_process = subprocess.run(f"./crud_cpp/calcularDano {' '.join(dados_ordenados)}", stdout=subprocess.PIPE, text=True, shell=True)
+        output = completed_process.stdout
+
+        return Response({'dano': output}, status=status.HTTP_200_OK)
+
+class passiva(APIView):
+
+    def post(self, request):
+        data = request.data
+        classe = data.get('classe')
+        hp = data.get('hp')
+        ee = data.get('ee')
+        ataque = data.get('ataque')
+        defesa = data.get('defesa')
+        sp_ataque = data.get('sp_ataque')
+        sp_defesa = data.get('sp_defesa')
+        velocidade = data.get('velocidade')
+
+        dados_ordenados = ['1', classe, 'nome', '1', '1', '1', hp, ee, ataque,
+                           defesa, sp_ataque, sp_defesa, velocidade, '1', '1', '1', '1']
+
+        completed_process = subprocess.run(f"./crud_cpp/passiva {' '.join(dados_ordenados)}", stdout=subprocess.PIPE, text=True, shell=True)
+        output = completed_process.stdout
+        campos = output.split(';')
+
+        hp = campos[0]
+        ee = campos[1]
+        ataque = campos[2]
+        defesa = campos[3]
+        sp_ataque = campos[4]
+        sp_defesa = campos[5]
+        velocidade = campos[6][:-1]
+
+        novos_atributos = {
+            'hp': hp,
+            'ee': ee,
+            'ataque': ataque,
+            'defesa': defesa,
+            'sp_ataque': sp_ataque,
+            'sp_defesa': sp_defesa,
+            'velocidade': velocidade
+        }
+        return Response(novos_atributos, status=status.HTTP_200_OK)

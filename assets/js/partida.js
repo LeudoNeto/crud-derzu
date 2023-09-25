@@ -35,7 +35,7 @@ function updateSkills(personagem) {
     skill4.dataset.id = personagem.dataset.skill4Id;
 }
 
-function calcularDano(skillId, alvo) {
+function calcularDano(atacante, alvo, skillId) {
     return fetch('/calcular_dano', {
         method: 'POST',
         headers: {
@@ -44,6 +44,15 @@ function calcularDano(skillId, alvo) {
         },
         body: JSON.stringify({
             'id': skillId,
+            'hp': atacante.dataset.hp,
+            'ee': atacante.dataset.ee,
+            'ataque': atacante.dataset.ataque,
+            'defesa': atacante.dataset.defesa,
+            'sp_ataque': atacante.dataset.sp_ataque,
+            'sp_defesa': atacante.dataset.sp_defesa,
+            'velocidade': atacante.dataset.velocidade,
+            'alvo_defesa': alvo.dataset.defesa,
+            'alvo_sp_defesa': alvo.dataset.sp_defesa
         })
     })
     .then(res => res.json())
@@ -62,6 +71,7 @@ function passivas(personagem_1, personagem_2) {
             'X-CSRFToken': csrftoken
         },
         body: JSON.stringify({
+            'classe': personagem_1.dataset.classe,
             'hp': personagem_1.dataset.hp,
             'ee': personagem_1.dataset.ee,
             'ataque': personagem_1.dataset.ataque,
@@ -111,6 +121,7 @@ function passivas(personagem_1, personagem_2) {
                     'X-CSRFToken': csrftoken
                 },
                 body: JSON.stringify({
+                    'classe': personagem_2.dataset.classe,
                     'hp': personagem_2.dataset.hp,
                     'ee': personagem_2.dataset.ee,
                     'ataque': personagem_2.dataset.ataque,
@@ -171,10 +182,10 @@ var skills = document.querySelectorAll('.skill');
 skills.forEach(function(skill) {
     skill.addEventListener('click', function() {
         if (p1_escolheu == false) {
-            p1_escolheu = skill.dataset.id;
+            p1_escolheu = skill.querySelector('h5').dataset.id;
             updateSkills(personagem_2);
         } else {
-            p2_escolheu = skill.dataset.id;
+            p2_escolheu = skill.querySelector('h5').dataset.id;
 
             personagem_1_imagem.classList.add('animacao1');
             personagem_2_imagem.classList.add('animacao2');
@@ -194,9 +205,9 @@ skills.forEach(function(skill) {
             let primeiroAtaque = primeiroAtacante === personagem_1 ? p1_escolheu : p2_escolheu;
             let segundoAtaque = primeiroAtacante === personagem_1 ? p2_escolheu : p1_escolheu;
 
-            calcularDano(primeiroAtaque, segundoAtacante)
+            calcularDano(primeiroAtacante, segundoAtacante, primeiroAtaque)
             .then(dano => mostrarMensagemDano(primeiroAtacante, segundoAtacante, dano))
-            .then(() => calcularDano(segundoAtaque, primeiroAtacante))
+            .then(() => calcularDano(segundoAtacante, primeiroAtacante, segundoAtaque))
             .then(dano => mostrarMensagemDano(segundoAtacante, primeiroAtacante, dano))
             .then(() => {
                 if (parseInt(personagem_1.dataset.hp) <= 0) {

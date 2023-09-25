@@ -22,7 +22,7 @@ class Skill {
                 this->multiplicadores_atributos[i] = multiplicadores_atributos[i];
             }
         }
-        void calcular_dano();
+        void calcular_dano(int hp, int pw, int atk, int def, int m_atk, int m_def, int spd, int def_en, int m_def_en);
 
         // Funções de escrita e leitura para serialização
         void write(std::ofstream& file) {
